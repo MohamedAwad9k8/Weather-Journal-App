@@ -31,3 +31,20 @@ function listening(){
     console.log("Server is running!");
     console.log(`Running on localhost:${port}`);
 }
+
+/* Routes */
+
+//get route
+app.get('/', function (req,res){
+    res.send(projectData);
+    res.send("Data Sent!");
+})
+
+//post route
+app.get('/', function (req,res){
+    let newData = req.body;
+    projectData."date" = req.body.date;
+    projectData."temp" = req.body.temp;
+    projectData."userResponse" = req.body.userResponse;
+    res.send("Data Recevied!");
+})

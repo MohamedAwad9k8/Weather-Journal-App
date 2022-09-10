@@ -1,27 +1,28 @@
 /* Global Variables */
+const baseUrlGeo = "https://api.openweathermap.org/geo/1.0/zip?zip=";
+const apiKey = "db5ca65c7eb6c043a46017f12449131b";
+var zipCode = "11757";
+const baseUrlWeather = "http://api.openweathermap.org/data/2.5/weather?";
+const generateButton = document.getElementById("generate");
 
 //const { application } = require("express");
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getFullYear()+ '-' + Number(d.getMonth()+1) + '-' + d.getDate();
+let newTime = 'T' + d.getHours() + ':' + Number(('0'+d.getMinutes()).slice(-2)) + ':' + d.getSeconds() + 'Z';
+let validDateTime = newDate + newTime;
 
-/* Generating API */
+
 
 /* Setting Routes */
 
 //GET method route
 const getData = async function(url = ''){
-    const response = await fetch(url, {
-        method: "GET",
-        credentials: "same-origin",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type' : 'application/json',
-        },
-    });
+    const response = await fetch(url);
     const resData = await response.json();
     console.log(resData);
+    return resData;
 }
 
 
@@ -41,9 +42,40 @@ const postData = async function(url = '', data = {}){
     return newData;
 }
 
+/* Generating API */
+let geoLink = baseUrlGeo + zipCode + ",us&appid=" + apiKey;
+
+let generateAPI = async function (geoLink){
+    let response = await fetch(geoLink);
+    let resData = await response.json();
+    let lon = resData.lon;
+    let lat = resData.lat;
+    let coordinates = `lat=${lat}&lon=${lon}`;
+    let weatherLink = baseUrlWeather + coordinates + "&appid=" + apiKey;
+    return(weatherLink);
+}
+
+
+
+
+
 /* Updating UI */
 
 /* Calling Functions */
-getData("/getData");
-let data = {"Day": 10, "Month": "September"};
-postData("/postData", data);
+// getData("/getData");
+// let data = {"Day": 10, "Month": "September"};
+// postData("/postData", data);
+
+
+/*Event Listener*/
+
+
+const getWeather = async function() {
+    weatherLink = await generateAPI(geoLink);
+    console.log(weatherLink);
+    let weather = await getData(weatherLink);
+    console.log(weather.main);
+    
+}
+generateButton.addEventListener('click', getWeather);
+

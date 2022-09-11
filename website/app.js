@@ -1,6 +1,6 @@
 /* Global Variables */
 const baseUrlGeo = "https://api.openweathermap.org/geo/1.0/zip?zip=";
-const apiKey = "db5ca65c7eb6c043a46017f12449131b";
+const apiKey = ""; /*Add your own API Key here!!!*/
 const baseUrlWeather = "http://api.openweathermap.org/data/2.5/weather?";
 const doc = document;
 const generateButton = doc.getElementById("generate");

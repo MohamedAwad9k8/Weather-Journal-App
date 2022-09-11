@@ -32,8 +32,17 @@ body{
     background: rgba(59, 74, 107, .4);
 }
 
-#entryHolder{
+.entries{
+    width: 40%;
+    
+}
 
+#entries_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#entryHolder{
     margin: 2em;
 }
 
@@ -54,6 +63,14 @@ body{
 }
 .title{
     font-size: 36px;
+}
+
+#WeatherAPI{
+    margin: 2em 0 0 0;
+}
+
+#APIholder{
+    margin: 0 0 0 2em;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */

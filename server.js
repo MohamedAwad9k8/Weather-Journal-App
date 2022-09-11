@@ -36,8 +36,15 @@ function listening(){
 
 //GET method route
 app.get("/getData", function (req,res){
-    res.json(projectData);
-    console.log("data sent!")
+    if (Object.keys(projectData).length === 0){
+        res.json({date:"NA",temp:"NA",feelings:"NA"});
+        console.log("No Data yet");
+    }
+    else{
+        res.json(projectData);
+        console.log("data sent!");
+    }
+    
 });
 
 //POST method route
@@ -46,5 +53,5 @@ app.post("/postData", function (req,res){
     projectData.date = req.body.date;
     projectData.temp = req.body.temp;
     projectData.feelings = req.body.feelings;
-    console.log(req.body);
+    console.log("data recived!");
 });

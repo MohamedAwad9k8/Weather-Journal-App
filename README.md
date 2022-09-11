@@ -1,10 +1,85 @@
 # Weather-Journal App Project
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+### This project uses Web API and user data to dynamically update the UI. It takes input from the user:
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+1. Zip Code for location.
+2. How is the user feeling that day.
+
+It then uses **Zip Code** to do an inquiry to the Wep API and get back the Temperature.
+It then sends data that will be saved on the local server App Endpoint:
+
+* **Date**, at which the inquiry was done.
+* **Temperature** at this day.
+* The **feeling** of the user this day.
+
+And finally it uses the data to update the UI, specifically the **"Most Recent Entry"** section.
+
+## My Strategy to build the App:
+
+I divided the app into several tasks, and worked on each task seperately.
+
+I used git, building the app, so each task is built on a seperate branch, simulating a team work enviroment.
+
+**Task List**
+
+1. Installing the dependencies and setting up the server.
+    
+2. Acquiring API Key from OpenWeatherMap.com
+
+3. Setting up Get Route and Post Route
+
+4. Integrating OpenWeatherMap API
+
+5. Adjusting UI
+
+6. Dynamically Update UI
+
+
+## How the App works
+
+* First, using **npm package manager** to install **express**, **cors** and **body-parser**, and running the server on port 8000.
+
+* The user enters, his **Zip Code** signifying his location and and how he is **feeling** on this day. (note: zip code isn't supported by all countries, and Egypt is one of the countries that doesn't support it, so the project is available mainly for USA zip codes.)
+
+* Then the app uses the enterd **Zip Code** to forge an inquiry link for the **Geocode API** on OpenWeatherMap.com. This inquiry returns the **latitude** and **longitude** of that place.
+
+* Using the **latitude** and **longitude**, the app forges a new inquiry link, for the **Weather API** on OpenWeatherMap.com. This returns the **Weather Data** needed by the app.
+
+* A chain of promises takes place: 
+            
+             1. GET request to the **Geocode API**.
+             2. GET request to the **Weather API**.
+             3. POST request to the **Local Server (App API Endpoint)**.
+             4. GET request to the **LocalServer**.
+
+* The **Date**, **Temperature** and **Feelings** is sent to the local server to be stored in the endpoint.
+
+* A final GET request is made, and the data coming from the API Endpoint is displayed on the UI for the user. It's displayed under **Most Recent Entry**. While the data coming from OpenWeatherMap.com is displayed under **Weather Today**.
+
+* Whenever the app starts, it requests the App Endpoint data, and displays them, if there's no data yet, it displays **NA** instead.
+
+
+## Screenshots of the App running
+
+The App when it first starts:
+
+![image|690x361](upload://khAS60aOLyb8XqCzANZRJ6122vv.png)
+
+Generating an API Inquiry:
+
+![image|690x350](upload://7gW2DCfn8t34oOdEFxtTIxcXXZ4.png)
+
+UI has been updated:
+
+![image|690x282](upload://ofSOjQ7cSUgEbPHacq5K82rAru4.png)
+
+Journal Data is still kept  after refreshing the page:
+
+![image|690x370](upload://7wstg4vzUdKll2dEybV0s8LJ6Dw.png)
+
+Alert in case of invalid Zip Code:
+
+![image|690x401](upload://zZVcD0fV2Jop8lrBFLLoGVh9upR.png)
+

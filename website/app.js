@@ -22,14 +22,12 @@ const getData = async function(url = ''){
     const response = await fetch(url);
     const resData = await response.json();
     console.log("data recieved!");
-    console.log(resData);
     return resData;
 }
 
 
 //POST method route
 const postData = async function(url = '', data = {}){
-    console.log(data);
     const response = await fetch (url, {
         method: "POST",
         credentials: "same-origin",
@@ -39,7 +37,7 @@ const postData = async function(url = '', data = {}){
         body: JSON.stringify(data),
     });
     const newData = await response.json();
-    console.log(newData);
+    console.log("data sent!");
     return newData;
 }
 
@@ -67,17 +65,16 @@ const updateUI = function(date, temp, userFeelings) {
     doc.getElementById("date").innerHTML = date;
     doc.getElementById("temp").innerHTML = temp;
     doc.getElementById("content"). innerHTML = userFeelings;
-    console.log("UI has been updated");
 }
 
 const displayWeatherApiResults = function(weather){
     doc.getElementById("WeatherAPI").innerHTML = `
-    Maximum Temperature : 23.86 <br><br>
-    Minimum Temperature : 19.99 <br><br>
-    Temperature : 21.59 <br><br>
-    Feels Like : 21.76 <br><br>
-    Humidity : 75 <br><br>
-    Pressure : 1023 <br><br>`;
+    Maximum Temperature : ${weather.temp_max} <br><br>
+    Minimum Temperature : ${weather.temp_min} <br><br>
+    Temperature : ${weather.temp} <br><br>
+    Feels Like : ${weather.feels_like} <br><br>
+    Humidity : ${weather.humidity} <br><br>
+    Pressure : ${weather.pressure} <br><br>`;
 }
 
 /* Calling Functions */
@@ -103,9 +100,7 @@ const getWeather = async function() {
     let geoLink = baseUrlGeo + zipCode + ",us&appid=" + apiKey;
     //Generating the API link for the weather inquiry to get the weather
     weatherLink = await generateAPI(geoLink);
-    console.log(weatherLink);
     let weather = await getData(weatherLink);
-    console.log(weather.main);
 
     //send Data to API EndPoint
     let data = {"date":newDate, "temp":weather.main.temp, "feelings":userFeelings}

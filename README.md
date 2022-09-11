@@ -65,21 +65,20 @@ I used git, building the app, so each task is built on a seperate branch, simula
 
 The App when it first starts:
 
-![image|690x361](upload://khAS60aOLyb8XqCzANZRJ6122vv.png)
+![image|690x361](website/images/img1.png)
 
 Generating an API Inquiry:
 
-![image|690x350](upload://7gW2DCfn8t34oOdEFxtTIxcXXZ4.png)
+![image|690x350](website/images/img2.png)
 
 UI has been updated:
 
-![image|690x282](upload://ofSOjQ7cSUgEbPHacq5K82rAru4.png)
+![image|690x282](website/images/img3.png)
 
 Journal Data is still kept  after refreshing the page:
 
-![image|690x370](upload://7wstg4vzUdKll2dEybV0s8LJ6Dw.png)
+![image|690x370](website/images/img4.png)
 
 Alert in case of invalid Zip Code:
 
-![image|690x401](upload://zZVcD0fV2Jop8lrBFLLoGVh9upR.png)
-
+![image|690x401](website/images/img5.png)

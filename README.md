@@ -16,6 +16,8 @@ It then sends data that will be saved on the local server App Endpoint:
 
 And finally it uses the data to update the UI, specifically the **"Most Recent Entry"** section.
 
+## Note: You will need to add your Own API Key in `website/app.js`. To get an API Key head to `https://openweathermap.org/api`.
+
 ## My Strategy to build the App:
 
 I divided the app into several tasks, and worked on each task seperately.

@@ -1,8 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {
-    color: "Red",
-    number: 5,
-};
+projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -40,13 +37,14 @@ function listening(){
 //GET method route
 app.get("/getData", function (req,res){
     res.json(projectData);
+    console.log("data sent!")
 });
 
 //POST method route
 app.post("/postData", function (req,res){
     let newData = req.body;
-    // projectData."date" = req.body.date;
-    // projectData."temp" = req.body.temp;
-    // projectData."userResponse" = req.body.userResponse;
+    projectData.date = req.body.date;
+    projectData.temp = req.body.temp;
+    projectData.feelings = req.body.feelings;
     console.log(req.body);
 });

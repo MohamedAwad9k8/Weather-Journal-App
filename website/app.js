@@ -9,9 +9,9 @@ const generateButton = document.getElementById("generate");
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getFullYear()+ '-' + Number(d.getMonth()+1) + '-' + d.getDate();
-let newTime = 'T' + d.getHours() + ':' + Number(('0'+d.getMinutes()).slice(-2)) + ':' + d.getSeconds() + 'Z';
-let validDateTime = newDate + newTime;
+let newDate = d.getDate() + '/' + Number(d.getMonth()+1) + '/' + d.getFullYear() ;
+console.log(newDate);
+
 
 
 
